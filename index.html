@@ -2,16 +2,16 @@
 <html lang="ja" class="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>蒲田製靴 KAMADA - OEM共同開発企画書 2026 (Light Edition)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Playfair Display, Noto Serif JP & Plus Jakarta Sans -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+JP:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -23,23 +23,18 @@
                             50: '#FAF6ED',
                             100: '#F4EAD3',
                             300: '#D9B46A',
-                            500: '#A37322',
-                            600: '#8C5E13',
-                            700: '#6B450B',
+                            500: '#9A7228',
+                            600: '#845E1B',
+                            700: '#684710',
                         },
-                        slate: {
-                            50: '#F9F9FB',
-                            100: '#F3F3F7',
-                            200: '#E4E4EC',
-                            300: '#D1D1DE',
-                            700: '#334155',
-                            800: '#1E293B',
-                            900: '#0F172A',
+                        dark: {
+                            900: '#121212',
+                            800: '#1A1A1A',
+                            700: '#2A2A2A',
                         }
                     },
                     fontFamily: {
                         serif: ['"Noto Serif JP"', 'serif'],
-                        playfair: ['"Playfair Display"', 'serif'],
                         cinzel: ['"Cinzel"', 'serif'],
                         sans: ['"Plus Jakarta Sans"', 'sans-serif']
                     }
@@ -48,62 +43,77 @@
         }
     </script>
     <style>
-        body {
+        /* Mobile-first scroll settings */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F8F9FA;
+            color: #1A1A1A;
             font-family: 'Plus Jakarta Sans', 'Noto Serif JP', sans-serif;
-            background-color: #F9F9FB;
-            color: #1E293B;
-            overflow: hidden;
+            overflow: hidden; /* Desktop keeps layout locked, inner container scrolls */
         }
-        .font-serif-jp {
-            font-family: 'Noto Serif JP', serif;
+
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+
+        /* Slide layout for mobile readability and scrolling */
+        .slide-scroll-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 5rem; /* Room for fixed bottom navbar on mobile */
         }
-        .font-cinzel {
-            font-family: 'Cinzel', serif;
+
+        @media (min-width: 768px) {
+            .slide-scroll-wrapper {
+                padding-bottom: 1rem;
+            }
         }
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
+
+        /* Slide transition animation */
+        .slide {
+            transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
         }
-        
-        /* Light Luxury Cards & Panels */
+        .slide-active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Glass & Card Design */
         .glass-panel {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(163, 115, 34, 0.18);
-            box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(154, 114, 40, 0.2);
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.04);
         }
         .glass-card {
             background: #FFFFFF;
-            border: 1px solid rgba(228, 228, 236, 0.9);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.25s ease;
         }
         .glass-card:hover {
-            border-color: rgba(163, 115, 34, 0.35);
-            box-shadow: 0 10px 25px -5px rgba(163, 115, 34, 0.1);
-            transform: translateY(-2px);
+            border-color: rgba(154, 114, 40, 0.4);
+            box-shadow: 0 8px 20px -4px rgba(154, 114, 40, 0.12);
         }
-        
-        /* Custom slide animation */
-        .slide-content {
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-        }
-        .slide-active .slide-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Premium Gradient Text & Borders */
+
+        /* Gradient Text */
         .gold-gradient-text {
-            background: linear-gradient(135deg, #8C5E13 0%, #A37322 50%, #C89945 100%);
+            background: linear-gradient(135deg, #845E1B 0%, #9A7228 50%, #C89945 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        /* Custom Scrollbar */
+
+        /* Custom Scrollbar for inner cards */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
             background: #F1F1F5;
@@ -116,198 +126,218 @@
 </head>
 <body class="h-screen w-screen flex flex-col justify-between selection:bg-gold-100 selection:text-gold-700">
 
-    <!-- Top Navigation Header -->
-    <header class="h-16 px-6 md:px-12 flex items-center justify-between border-b border-slate-200/80 z-30 bg-white/90 backdrop-blur-md shadow-sm">
+    <!-- Header Navigation -->
+    <header class="h-16 px-4 md:px-10 flex items-center justify-between border-b border-slate-200 bg-white/95 backdrop-blur-md z-30 shrink-0 shadow-sm">
         <div class="flex items-center space-x-3">
-            <span class="font-cinzel text-xl font-bold tracking-widest text-gold-600">KAMADA</span>
-            <span class="text-slate-300">|</span>
-            <span class="text-xs font-semibold tracking-wider text-slate-500 uppercase font-sans">蒲田製靴 2026 OEM PROPOSAL</span>
+            <!-- Embedded SVG Badge Logo (Fallback to logo.png if provided) -->
+            <div class="w-9 h-9 flex items-center justify-center shrink-0">
+                <img src="logo.png" onerror="this.style.display='none'; document.getElementById('header-svg-logo').style.display='block';" alt="蒲田製靴 KAMADA" class="w-full h-full object-contain hidden" />
+                <svg id="header-svg-logo" viewBox="0 0 200 200" class="w-full h-full text-dark-900 fill-current">
+                    <path d="M 25,25 H 175 V 175 H 25 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                    <path d="M 30,30 H 170 V 170 H 30 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 20,20 Q 25,25 25,35 M 180,20 Q 175,25 175,35 M 20,180 Q 25,175 25,165 M 180,180 Q 175,175 175,165" fill="none" stroke="currentColor" stroke-width="3"/>
+                    <line x1="100" y1="45" x2="100" y2="135" stroke="currentColor" stroke-width="1.5"/>
+                    <text x="63" y="82" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="34" text-anchor="middle">蒲</text>
+                    <text x="63" y="125" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="34" text-anchor="middle">田</text>
+                    <text x="137" y="82" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="34" text-anchor="middle">製</text>
+                    <text x="137" y="125" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="34" text-anchor="middle">靴</text>
+                    <text x="100" y="162" font-family="'Cinzel', serif" font-weight="600" font-size="19" text-anchor="middle" letter-spacing="4">KAMADA</text>
+                </svg>
+            </div>
+            <span class="font-cinzel text-base md:text-lg font-bold tracking-wider text-dark-900">KAMADA</span>
+            <span class="text-slate-300 hidden sm:inline">|</span>
+            <span class="text-xs font-medium tracking-wider text-slate-500 uppercase font-sans hidden sm:inline">蒲田製靴 2026 OEM PROPOSAL</span>
         </div>
-        <div class="flex items-center space-x-4 text-sm text-slate-600">
-            <span id="slide-indicator" class="font-mono text-gold-600 font-bold bg-gold-50 px-3 py-1 rounded border border-gold-200">01 / 11</span>
+
+        <div class="flex items-center space-x-3 text-sm">
+            <span id="slide-indicator" class="font-mono text-gold-700 font-bold bg-gold-50 px-2.5 py-1 rounded border border-gold-200 text-xs md:text-sm">01 / 11</span>
             
-            <button onclick="toggleGridModal()" class="px-3 py-1.5 rounded-md hover:bg-slate-100 text-slate-700 transition-colors flex items-center space-x-1.5 text-xs font-medium border border-slate-200" title="スライド一覧">
+            <button onclick="toggleGridModal()" class="px-2.5 py-1.5 rounded-md hover:bg-slate-100 text-slate-700 transition-colors flex items-center space-x-1 text-xs font-medium border border-slate-200" title="スライド一覧">
                 <i class="fa-solid fa-border-all text-gold-600"></i>
                 <span class="hidden sm:inline">一覧</span>
             </button>
             
-            <button id="btn-fullscreen" onclick="toggleFullScreen()" class="p-2 rounded-md hover:bg-slate-100 text-slate-600 transition-colors" title="全画面表示">
-                <i class="fa-solid fa-expand text-base"></i>
+            <button id="btn-fullscreen" onclick="toggleFullScreen()" class="p-1.5 rounded-md hover:bg-slate-100 text-slate-600 transition-colors hidden sm:block" title="全画面">
+                <i class="fa-solid fa-expand text-sm"></i>
             </button>
         </div>
     </header>
 
-    <!-- Slide Container -->
-    <main id="slide-container" class="relative flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 py-6 flex items-center justify-center overflow-hidden">
+    <!-- Main Dynamic Slide Area -->
+    <main id="slide-container" class="relative flex-1 w-full max-w-6xl mx-auto overflow-hidden">
 
         <!-- SLIDE 1: Cover -->
-        <section class="slide slide-active absolute inset-0 p-6 md:p-12 flex flex-col justify-between" data-slide="1">
-            <div class="slide-content h-full flex flex-col justify-between max-w-5xl mx-auto w-full">
-                <div class="flex justify-between items-start">
-                    <span class="px-3.5 py-1 rounded bg-gold-50 border border-gold-300 text-gold-700 text-xs tracking-widest font-mono font-bold">CONFIDENTIAL</span>
-                    <span class="text-slate-400 font-cinzel text-sm tracking-widest font-semibold">2026 EDITION</span>
+        <section class="slide slide-active absolute inset-0 slide-scroll-wrapper p-5 md:p-12 flex flex-col justify-between" data-slide="1">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-8 py-6">
+                <!-- Large Logo Badge for Title Slide -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-slate-200 pb-8">
+                    <div class="w-24 h-24 md:w-32 md:h-32 text-dark-900 shrink-0">
+                        <img src="logo.png" onerror="this.style.display='none'; document.getElementById('cover-svg-logo').style.display='block';" alt="蒲田製靴 KAMADA Logo" class="w-full h-full object-contain hidden" />
+                        <svg id="cover-svg-logo" viewBox="0 0 200 200" class="w-full h-full fill-current">
+                            <path d="M 20,20 H 180 V 180 H 20 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <path d="M 26,26 H 174 V 174 H 26 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="100" y1="42" x2="100" y2="138" stroke="currentColor" stroke-width="1.5"/>
+                            <text x="62" y="83" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">蒲</text>
+                            <text x="62" y="128" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">田</text>
+                            <text x="138" y="83" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">製</text>
+                            <text x="138" y="128" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">靴</text>
+                            <text x="100" y="165" font-family="'Cinzel', serif" font-weight="600" font-size="20" text-anchor="middle" letter-spacing="5">KAMADA</text>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-1">
+                        <span class="px-3 py-1 rounded bg-gold-50 border border-gold-300 text-gold-700 text-xs font-mono font-bold tracking-widest inline-block">CONFIDENTIAL</span>
+                        <p class="text-xs text-slate-400 font-mono tracking-widest pt-2">2026 EDITION / OEM PARTNER PROPOSAL</p>
+                    </div>
                 </div>
                 
-                <div class="my-auto space-y-6">
-                    <p class="text-gold-600 font-serif-jp text-lg md:text-xl tracking-widest font-medium">OEMパートナー様向け 共同開発相談資料</p>
-                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif-jp font-semibold leading-tight text-slate-900">
-                        正統派の美しさに、<br><span class="gold-gradient-text font-bold">必要なゆとり</span>を。
+                <div class="space-y-4">
+                    <p class="text-gold-600 font-serif-jp text-base md:text-xl font-semibold tracking-wide">OEMパートナー様向け 共同開発相談資料</p>
+                    <h1 class="text-2xl sm:text-4xl md:text-5xl font-serif-jp font-bold leading-tight text-dark-900">
+                        正統派の美しさに、<br><span class="gold-gradient-text">必要なゆとり</span>を。
                     </h1>
-                    <p class="text-slate-600 max-w-2xl text-base md:text-lg leading-relaxed font-normal">
-                        端正なドレスシューズの外観を保ちながら、足指まわりの窮屈さを解消する。<br class="hidden md:inline">
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed font-normal pt-2">
+                        端正なドレスシューズの外観を保ちながら、足指まわりの窮屈さを解消する。<br class="hidden sm:inline">
                         木型からの共同開発による新しい革靴の提案。
                     </p>
                 </div>
 
-                <div class="pt-6 border-t border-slate-200 flex flex-col md:flex-row md:items-center justify-between text-sm text-slate-500 gap-4">
-                    <div class="space-y-0.5">
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-mono">Project</p>
-                        <p class="text-slate-800 font-semibold">新規プレミアム・ドレスシューズ事業</p>
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between text-xs md:text-sm text-slate-500 gap-3">
+                    <div>
+                        <span class="text-slate-400 block font-mono text-[10px]">PROJECT</span>
+                        <span class="text-dark-900 font-semibold">新規プレミアム・ドレスシューズ事業</span>
                     </div>
-                    <div class="space-y-0.5 md:text-right">
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-mono">Presenter</p>
-                        <p class="text-gold-600 font-bold font-serif-jp">蒲田製靴 / KAMADA</p>
+                    <div class="sm:text-right">
+                        <span class="text-slate-400 block font-mono text-[10px]">PRESENTER</span>
+                        <span class="text-gold-700 font-bold font-serif-jp">蒲田製靴 / KAMADA</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SLIDE 2: Project Overview -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="2">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="2">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">01 / PROJECT OVERVIEW</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">企画概要と事業モデル</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">01 / PROJECT OVERVIEW</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">企画概要と事業モデル</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 col-span-1 md:col-span-2 space-y-3">
-                        <div class="flex items-center space-x-3 text-gold-600">
-                            <i class="fa-solid fa-bullseye text-xl"></i>
-                            <h3 class="font-serif-jp font-bold text-xl text-slate-900">開発の狙い</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-panel p-5 rounded-xl border-l-4 border-l-gold-500 sm:col-span-2 space-y-2">
+                        <div class="flex items-center space-x-2 text-gold-700">
+                            <i class="fa-solid fa-bullseye text-base"></i>
+                            <h3 class="font-serif-jp font-bold text-base md:text-lg text-dark-900">開発の狙い</h3>
                         </div>
-                        <p class="text-xl text-slate-800 font-serif-jp leading-snug">
+                        <p class="text-base md:text-lg text-dark-900 font-serif-jp leading-snug">
                             コンフォートの高級化ではなく、<span class="border-b-2 border-gold-300 pb-0.5 font-bold text-gold-700">正統派ドレスの内部革新</span>
                         </p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            見た目は格好いい正統派ドレスシューズ。しかし内部は足指を締めつけない設計。この両立を木型（ラスト）から綿密に作り込みます。
+                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+                            見た目は格好いい正統派ドレスシューズ。しかし内部は足指を締めつけない設計。この両立を木型から作り込みます。
                         </p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-2">
-                        <div class="text-xs text-gold-600 font-mono uppercase tracking-wider font-semibold"><i class="fa-solid fa-user-tag mr-2"></i>Target</div>
-                        <h4 class="font-bold text-slate-900">ターゲット層</h4>
-                        <p class="text-slate-600 text-sm">正統派の端正な見た目を好みつつ、足指の痛みに悩む30〜50代ビジネスパーソン</p>
+                    <div class="glass-card p-4 rounded-xl space-y-1">
+                        <div class="text-[11px] text-gold-700 font-mono uppercase font-semibold"><i class="fa-solid fa-user-tag mr-1.5"></i>Target</div>
+                        <h4 class="font-bold text-dark-900 text-sm">ターゲット層</h4>
+                        <p class="text-slate-600 text-xs leading-normal">正統派の見た目を好みつつ、足指の痛みに悩む層</p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-2">
-                        <div class="text-xs text-gold-600 font-mono uppercase tracking-wider font-semibold"><i class="fa-solid fa-tag mr-2"></i>Price Range</div>
-                        <h4 class="font-bold text-slate-900">想定上代価格</h4>
-                        <p class="text-2xl font-bold font-mono text-gold-600">¥55,000 〜 60,000 <span class="text-xs font-normal text-slate-500">(税込)</span></p>
+                    <div class="glass-card p-4 rounded-xl space-y-1">
+                        <div class="text-[11px] text-gold-700 font-mono uppercase font-semibold"><i class="fa-solid fa-tag mr-1.5"></i>Price Range</div>
+                        <h4 class="font-bold text-dark-900 text-sm">想定上代価格</h4>
+                        <p class="text-lg font-bold font-mono text-gold-700">¥55,000 〜 60,000 <span class="text-xs font-normal text-slate-500">(税込)</span></p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-2">
-                        <div class="text-xs text-gold-600 font-mono uppercase tracking-wider font-semibold"><i class="fa-solid fa-boxes-packing mr-2"></i>Initial Lot</div>
-                        <h4 class="font-bold text-slate-900">初回生産ロット</h4>
-                        <p class="text-2xl font-bold font-mono text-slate-800">50 〜 100 足 <span class="text-xs font-normal text-slate-500">(テストマーケティング)</span></p>
+                    <div class="glass-card p-4 rounded-xl space-y-1">
+                        <div class="text-[11px] text-gold-700 font-mono uppercase font-semibold"><i class="fa-solid fa-boxes-packing mr-1.5"></i>Initial Lot</div>
+                        <h4 class="font-bold text-dark-900 text-sm">初回生産ロット</h4>
+                        <p class="text-lg font-bold font-mono text-dark-900">50 〜 100 足 <span class="text-xs font-normal text-slate-500">(テストマーケ)</span></p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-2">
-                        <div class="text-xs text-gold-600 font-mono uppercase tracking-wider font-semibold"><i class="fa-solid fa-store mr-2"></i>Sales Model</div>
-                        <h4 class="font-bold text-slate-900">販売方式</h4>
-                        <p class="text-slate-600 text-sm"><span class="text-gold-700 font-bold">D2C × クラウドファンディング</span><br>初期在庫リスクを抑えた受注生産型モデル</p>
+                    <div class="glass-card p-4 rounded-xl space-y-1">
+                        <div class="text-[11px] text-gold-700 font-mono uppercase font-semibold"><i class="fa-solid fa-store mr-1.5"></i>Sales Model</div>
+                        <h4 class="font-bold text-dark-900 text-sm">販売方式</h4>
+                        <p class="text-slate-600 text-xs leading-normal"><span class="text-gold-700 font-bold">D2C × クラウドファンディング</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SLIDE 3: Why This Product -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="3">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="3">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">02 / WHY THIS PRODUCT</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">開発背景：既存製品と顧客ニーズの乖離</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">02 / WHY THIS PRODUCT</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">開発背景：既存製品と顧客ニーズの乖離</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-card p-6 rounded-xl border-l-4 border-l-red-500 flex flex-col justify-between space-y-4">
-                        <div class="space-y-3">
-                            <span class="text-xs font-mono font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded border border-red-200">PAIN POINT 01</span>
-                            <h3 class="text-lg font-bold text-slate-900">夕方の不快感・締めつけ</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                長時間の着用やデスクワークにより、夕方に足指や前足部へ強烈な圧迫感と痛みが発生。
-                            </p>
-                        </div>
-                        <i class="fa-solid fa-shoe-prints text-3xl text-slate-200 self-end"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-red-500 space-y-2">
+                        <span class="text-[10px] font-mono font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">PAIN 01</span>
+                        <h3 class="text-base font-bold text-dark-900">夕方の不快感・締めつけ</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            長時間の着用により、足指や前足部に強い圧迫感と痛みが発生。
+                        </p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl border-l-4 border-l-amber-500 flex flex-col justify-between space-y-4">
-                        <div class="space-y-3">
-                            <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded border border-amber-200">PAIN POINT 02</span>
-                            <h3 class="text-lg font-bold text-slate-900">幅広靴（4E/5E）への不満</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                履き心地は楽であるものの、甲が高く爪先が丸いため、スーツスタイルに合わせる端正さに欠ける。
-                            </p>
-                        </div>
-                        <i class="fa-solid fa-arrows-left-right-to-line text-3xl text-slate-200 self-end"></i>
+                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-amber-500 space-y-2">
+                        <span class="text-[10px] font-mono font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">PAIN 02</span>
+                        <h3 class="text-base font-bold text-dark-900">幅広靴（4E/5E）への不満</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            楽ではあるが、甲が高く爪先が丸い。スーツに合わせる端正さに欠ける。
+                        </p>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-xl border-2 border-gold-400 bg-gold-50/50 flex flex-col justify-between space-y-4">
-                        <div class="space-y-3">
-                            <span class="text-xs font-mono font-bold text-gold-700 bg-gold-100 px-2.5 py-1 rounded border border-gold-300">ESSENCE</span>
-                            <h3 class="text-lg font-bold text-gold-700">真のニーズの本質</h3>
-                            <p class="text-slate-800 font-serif-jp text-lg leading-relaxed pt-2">
-                                「楽な靴が欲しい」ではない。<br>
-                                <span class="text-gold-700 font-bold underline decoration-gold-400 underline-offset-4">「格好良い革靴を、我慢せずに履きたい」</span>。
-                            </p>
-                        </div>
-                        <i class="fa-solid fa-gem text-3xl text-gold-500 self-end"></i>
+                    <div class="glass-panel p-5 rounded-xl border-2 border-gold-400 bg-gold-50/50 space-y-2">
+                        <span class="text-[10px] font-mono font-bold text-gold-700 bg-gold-100 px-2 py-0.5 rounded border border-gold-300">ESSENCE</span>
+                        <h3 class="text-base font-bold text-gold-700">真のニーズの本質</h3>
+                        <p class="text-dark-900 font-serif-jp text-sm md:text-base leading-snug pt-1">
+                            「楽な靴が欲しい」ではない。<br>
+                            <span class="text-gold-700 font-bold underline decoration-gold-400">「格好良い革靴を、我慢せずに履きたい」</span>。
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SLIDE 4: Market Positioning -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="4">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-6">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="4">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">02 / MARKET POSITIONING</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">既存の快適靴と KAMADA の明確な違い</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">02 / MARKET POSITIONING</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">既存の快適靴と KAMADA の明確な違い</h2>
                 </div>
 
-                <!-- Comparison Table -->
+                <!-- Responsive Table Wrapper -->
                 <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left border-collapse min-w-[500px]">
                         <thead>
-                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-mono text-slate-600">
-                                <th class="p-4">カテゴリー</th>
-                                <th class="p-4">外観（エレガンス）</th>
-                                <th class="p-4">足指の快適性</th>
-                                <th class="p-4">踵・甲のホールド</th>
-                                <th class="p-4 text-gold-700 font-bold">ターゲットの満足度</th>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-[11px] font-mono text-slate-600">
+                                <th class="p-3">カテゴリー</th>
+                                <th class="p-3">外観（エレガンス）</th>
+                                <th class="p-3">足指の快適性</th>
+                                <th class="p-3">ホールド感</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-200 text-sm">
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-4 font-bold text-slate-800">伝統的ドレス靴</td>
-                                <td class="p-4 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> 極めて美しい</td>
-                                <td class="p-4 text-red-500 font-semibold"><i class="fa-solid fa-circle-xmark mr-1"></i> 強い圧迫・痛み</td>
-                                <td class="p-4 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> 良好</td>
-                                <td class="p-4 text-slate-500">見た目は良いが痛みに耐える必要あり</td>
+                        <tbody class="divide-y divide-slate-200 text-xs">
+                            <tr>
+                                <td class="p-3 font-bold text-dark-900">伝統的ドレス靴</td>
+                                <td class="p-3 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> 端正・美しい</td>
+                                <td class="p-3 text-red-500 font-semibold"><i class="fa-solid fa-circle-xmark mr-1"></i> 強い痛みが伴う</td>
+                                <td class="p-3 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> 良好</td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-4 font-bold text-slate-800">幅広快適靴 (4E/5E)</td>
-                                <td class="p-4 text-red-500 font-semibold"><i class="fa-solid fa-circle-xmark mr-1"></i> 丸く野暮ったい</td>
-                                <td class="p-4 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> ゆとりあり</td>
-                                <td class="p-4 text-amber-500 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 前滑りしやすい</td>
-                                <td class="p-4 text-slate-500">楽だがスーツに合わず満足度が低い</td>
+                            <tr>
+                                <td class="p-3 font-bold text-dark-900">幅広靴 (4E/5E)</td>
+                                <td class="p-3 text-red-500 font-semibold"><i class="fa-solid fa-circle-xmark mr-1"></i> 丸く野暮ったい</td>
+                                <td class="p-3 text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> ゆとりあり</td>
+                                <td class="p-3 text-amber-500 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 前滑りしやすい</td>
                             </tr>
-                            <tr class="bg-gold-50/70 border-2 border-gold-400">
-                                <td class="p-4 font-bold text-gold-700 text-base font-serif-jp">KAMADA 共同開発モデル</td>
-                                <td class="p-4 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 正統派ドレスの外観</td>
-                                <td class="p-4 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 解放的な空間</td>
-                                <td class="p-4 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 前滑りを完全防止</td>
-                                <td class="p-4 text-slate-900 font-bold">美しさと快適性を妥協なく両立</td>
+                            <tr class="bg-gold-50/80 border-2 border-gold-400">
+                                <td class="p-3 font-bold text-gold-700 text-sm font-serif-jp">KAMADA 共同開発</td>
+                                <td class="p-3 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 正統派ドレスの外観</td>
+                                <td class="p-3 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 圧迫のない空間</td>
+                                <td class="p-3 text-gold-700 font-bold"><i class="fa-solid fa-star text-gold-500 mr-1"></i> 前滑りを完全防止</td>
                             </tr>
                         </tbody>
                     </table>
@@ -316,42 +346,34 @@
         </section>
 
         <!-- SLIDE 5: Product Concept -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="5">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="5">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">03 / PRODUCT CONCEPT</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">コアコンセプト：設計思想</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">03 / PRODUCT CONCEPT</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">コアコンセプト：設計思想</h2>
                 </div>
 
-                <div class="text-center p-6 glass-panel rounded-2xl border border-gold-300 shadow-sm">
-                    <p class="text-gold-600 text-xs font-mono uppercase tracking-widest mb-2 font-semibold">Core Philosophy</p>
-                    <p class="text-xl md:text-3xl font-serif-jp font-bold text-slate-900">
-                        「<span class="text-gold-600">ゆとり</span>」と「<span class="text-gold-600">ホールド</span>」を部位ごとに分離して設計する。
+                <div class="text-center p-5 glass-panel rounded-xl border border-gold-300">
+                    <p class="text-xs text-gold-700 font-mono uppercase tracking-widest mb-1 font-semibold">Core Concept</p>
+                    <p class="text-lg md:text-2xl font-serif-jp font-bold text-dark-900">
+                        「<span class="text-gold-700">ゆとり</span>」と「<span class="text-gold-700">ホールド</span>」を<br class="sm:hidden">部位ごとに分離して設計する。
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Front Foot -->
-                    <div class="glass-card p-6 rounded-xl border-t-4 border-t-gold-500 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono font-bold px-3 py-1 bg-gold-100 text-gold-700 rounded-full border border-gold-200">前足部 (FRONT)</span>
-                            <i class="fa-solid fa-expand text-gold-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif-jp font-bold text-slate-900">必要なゆとり</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            親指・小指が自然に広がる空間を十分に確保し、長時間の歩行でも足指の圧迫や曲がりを防止する特注ラスト構造。
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-card p-5 rounded-xl border-t-4 border-t-gold-500 space-y-2">
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 bg-gold-100 text-gold-700 rounded-full">前足部（FRONT）</span>
+                        <h3 class="text-lg font-serif-jp font-bold text-dark-900">必要なゆとり</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            親指・小指が広がる空間を十分に確保し、圧迫や曲がりを防止。
                         </p>
                     </div>
 
-                    <!-- Rear Foot -->
-                    <div class="glass-card p-6 rounded-xl border-t-4 border-t-slate-700 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono font-bold px-3 py-1 bg-slate-100 text-slate-700 rounded-full border border-slate-300">甲・踵 (REAR)</span>
-                            <i class="fa-solid fa-compress text-slate-700 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-serif-jp font-bold text-slate-900">端正なホールド</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            甲周りは低く抑え、踵（ヒールカップ）をしっかり固めて締めることで、つま先側への前滑りを完全にシャットアウト。
+                    <div class="glass-card p-5 rounded-xl border-t-4 border-t-slate-700 space-y-2">
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded-full">甲・踵（REAR）</span>
+                        <h3 class="text-lg font-serif-jp font-bold text-dark-900">端正なホールド</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            甲周りは低く抑え、踵をしっかり固めることで前滑りを完全に防ぐ。
                         </p>
                     </div>
                 </div>
@@ -359,43 +381,43 @@
         </section>
 
         <!-- SLIDE 6: Key Verification -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="6">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="6">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">04 / KEY VERIFICATION</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">木型開発・試作での重点検証ポイント</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">04 / KEY VERIFICATION</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">木型開発・試作での重点検証ポイント</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-card p-6 rounded-xl flex items-start space-x-4">
-                        <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-lg">1</span>
-                        <div class="space-y-1.5">
-                            <h3 class="text-base font-bold text-slate-900">外観のシャープさと小指側のゆとりの共存</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">ボールガース〜外側ラインの張りを極力抑えつつ、内部に必要な空間を創出する木型職人のグラデーション技術。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="glass-card p-4 rounded-xl flex items-start space-x-3">
+                        <span class="shrink-0 w-8 h-8 rounded bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-sm">1</span>
+                        <div class="space-y-1">
+                            <h3 class="text-xs md:text-sm font-bold text-dark-900">外観のシャープさと小指側のゆとりの共存</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">ボールガース〜外側ラインの張りを抑えつつ空間を出す技術。</p>
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl flex items-start space-x-4">
-                        <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-lg">2</span>
-                        <div class="space-y-1.5">
-                            <h3 class="text-base font-bold text-slate-900">低甲設計と足入れ・甲ホールドの両立</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">ドレスシューズ特有の見た目の薄甲感を維持しながら、足入れ時に痛みの出ない甲の接地・カーブ設計。</p>
+                    <div class="glass-card p-4 rounded-xl flex items-start space-x-3">
+                        <span class="shrink-0 w-8 h-8 rounded bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-sm">2</span>
+                        <div class="space-y-1">
+                            <h3 class="text-xs md:text-sm font-bold text-dark-900">低甲設計と足入れ・甲ホールドの両立</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">見た目の薄甲感を維持しながら痛みの出ない甲の接地設計。</p>
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl flex items-start space-x-4">
-                        <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-lg">3</span>
-                        <div class="space-y-1.5">
-                            <h3 class="text-base font-bold text-slate-900">前足部のゆとりと「前滑り防止」策</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">前足部が広いことで発生しやすい前滑りを抑えるため、ウエスト（踏まず部）の絞り込みとフィッティング強化。</p>
+                    <div class="glass-card p-4 rounded-xl flex items-start space-x-3">
+                        <span class="shrink-0 w-8 h-8 rounded bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-sm">3</span>
+                        <div class="space-y-1">
+                            <h3 class="text-xs md:text-sm font-bold text-dark-900">前足部のゆとりと「前滑り防止」策</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">つま先が前に滑って当たらないようウエストをフィットさせる。</p>
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl flex items-start space-x-4">
-                        <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-lg">4</span>
-                        <div class="space-y-1.5">
-                            <h3 class="text-base font-bold text-slate-900">既存木型の改修可否 vs 新規木型起型</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">初期開発コストおよび狙うシルエットの再現性を総合的に考慮した、最適な木型アプローチの決定。</p>
+                    <div class="glass-card p-4 rounded-xl flex items-start space-x-3">
+                        <span class="shrink-0 w-8 h-8 rounded bg-gold-100 text-gold-700 border border-gold-300 flex items-center justify-center font-mono font-bold text-sm">4</span>
+                        <div class="space-y-1">
+                            <h3 class="text-xs md:text-sm font-bold text-dark-900">既存木型の改修可否 vs 新規木型起型</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">初期費用とターゲット木型の再現性を踏まえた最適な選択。</p>
                         </div>
                     </div>
                 </div>
@@ -403,41 +425,35 @@
         </section>
 
         <!-- SLIDE 7: Go-To-Market -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="7">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="7">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">05 / GO-TO-MARKET</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">販売・ブランディング方針</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">05 / GO-TO-MARKET</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">販売・ブランディング方針</h2>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-card p-6 rounded-xl space-y-4">
-                        <div class="w-12 h-12 rounded-lg bg-gold-50 border border-gold-200 flex items-center justify-center text-gold-600 text-xl">
-                            <i class="fa-solid fa-bullseye"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">ニッチ・プレミアム戦略</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="text-gold-600 text-lg"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="text-sm font-bold text-dark-900">ニッチ・プレミアム戦略</h3>
                         <p class="text-slate-600 text-xs leading-relaxed">
-                            マス市場を狙うのではなく、「端正な見た目」と「足指の快適さ」を熱望する深い課題意識を持ったロイヤル層へ絞り込んでダイレクトにリーチ。
+                            マス狙いではなく、「端正な見た目」と「足指の快適さ」を熱望する深い課題意識を持つ層へ特化してリーチ。
                         </p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-4">
-                        <div class="w-12 h-12 rounded-lg bg-gold-50 border border-gold-200 flex items-center justify-center text-gold-600 text-xl">
-                            <i class="fa-solid fa-rocket"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">クラファン先行受注</h3>
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="text-gold-600 text-lg"><i class="fa-solid fa-rocket"></i></div>
+                        <h3 class="text-sm font-bold text-dark-900">クラファン先行受注</h3>
                         <p class="text-slate-600 text-xs leading-relaxed">
-                            Makuake等でのテストマーケティングを実施。メーカー様の初期在庫リスクを最小化しつつ、熱量の高い初期ファンを獲得。
+                            Makuake等でのテストマーケを実施。初期在庫リスクを抑えつつ、熱量の高い初期顧客ファンを獲得。
                         </p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-xl space-y-4">
-                        <div class="w-12 h-12 rounded-lg bg-gold-50 border border-gold-200 flex items-center justify-center text-gold-600 text-xl">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">物語のコンテンツ化</h3>
+                    <div class="glass-card p-5 rounded-xl space-y-2">
+                        <div class="text-gold-600 text-lg"><i class="fa-solid fa-book-open"></i></div>
+                        <h3 class="text-sm font-bold text-dark-900">物語のコンテンツ化</h3>
                         <p class="text-slate-600 text-xs leading-relaxed">
-                            単なる「楽な機能靴」としてではなく、木型開発の苦難や職人の手仕事プロセスそのものをプレミアムなストーリーとして発信。
+                            単なる「楽な革靴」ではなく、木型開発の苦難や職人の手仕事プロセスをコンテンツとして発信。
                         </p>
                     </div>
                 </div>
@@ -445,48 +461,44 @@
         </section>
 
         <!-- SLIDE 8: Request to OEM Partner -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="8">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="8">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">06 / REQUEST TO OEM PARTNER</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">OEMパートナー様へのご相談範囲</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">06 / REQUEST TO OEM PARTNER</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">OEMパートナー様へのご相談範囲</h2>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl space-y-6">
-                    <p class="text-slate-700 text-sm leading-relaxed font-medium">
-                        本プロジェクトの成功には、伝統的な靴づくりの技術と柔軟な試作開発力が不可欠です。貴社におかれましては、以下の領域でのご協力を仰ぎたく考えております。
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                        <div class="flex items-start space-x-3.5 bg-white p-4 rounded-xl border border-slate-200">
-                            <i class="fa-solid fa-circle-check text-gold-600 text-lg mt-0.5"></i>
+                <div class="glass-panel p-6 rounded-xl space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-start space-x-3 bg-white p-3 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-check-circle text-gold-600 text-base mt-0.5"></i>
                             <div>
-                                <h4 class="font-bold text-slate-900 text-sm">木型（ラスト）の共同モディファイ・起型</h4>
-                                <p class="text-xs text-slate-500 mt-1">既存木型の改修提案、またはオリジナルラストの削り出し</p>
+                                <h4 class="font-bold text-dark-900 text-xs md:text-sm">木型（ラスト）開発・起型</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">既存改修または新規起型の擦り合わせ</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start space-x-3.5 bg-white p-4 rounded-xl border border-slate-200">
-                            <i class="fa-solid fa-circle-check text-gold-600 text-lg mt-0.5"></i>
+                        <div class="flex items-start space-x-3 bg-white p-3 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-check-circle text-gold-600 text-base mt-0.5"></i>
                             <div>
-                                <h4 class="font-bold text-slate-900 text-sm">サンプル試作およびフィッティング検証</h4>
-                                <p class="text-xs text-slate-500 mt-1">ファースト・セカンド試作の製作および修正アッパー作成</p>
+                                <h4 class="font-bold text-dark-900 text-xs md:text-sm">サンプル試作およびフィッティング</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">1st/2ndサンプルの作成と微調整</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start space-x-3.5 bg-white p-4 rounded-xl border border-slate-200">
-                            <i class="fa-solid fa-circle-check text-gold-600 text-lg mt-0.5"></i>
+                        <div class="flex items-start space-x-3 bg-white p-3 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-check-circle text-gold-600 text-base mt-0.5"></i>
                             <div>
-                                <h4 class="font-bold text-slate-900 text-sm">仕様・素材のご提案</h4>
-                                <p class="text-xs text-slate-500 mt-1">上代5.5〜6万円のクオリティに見合うレザー、ソール、製法選定</p>
+                                <h4 class="font-bold text-dark-900 text-xs md:text-sm">アッパー・ソール仕様提案</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">5.5〜6万円に見合う推奨レザー・底材</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start space-x-3.5 bg-white p-4 rounded-xl border border-slate-200">
-                            <i class="fa-solid fa-circle-check text-gold-600 text-lg mt-0.5"></i>
+                        <div class="flex items-start space-x-3 bg-white p-3 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-check-circle text-gold-600 text-base mt-0.5"></i>
                             <div>
-                                <h4 class="font-bold text-slate-900 text-sm">小ロット（50〜100足）の本生産対応</h4>
-                                <p class="text-xs text-slate-500 mt-1">クラウドファンディング達成後の高品質かつ確実に納品できる生産体制</p>
+                                <h4 class="font-bold text-dark-900 text-xs md:text-sm">50〜100足規模での本生産</h4>
+                                <p class="text-[11px] text-slate-500 mt-0.5">小ロット生産対応可能な製造ライン確保</p>
                             </div>
                         </div>
                     </div>
@@ -494,180 +506,183 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: Next Steps -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="9">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-6">
+        <!-- SLIDE 9: Roadmap -->
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="9">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-6 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">07 / NEXT STEPS</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">共同開発ロードマップ（予定）</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">07 / GO-TO-MARKET</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">共同開発ロードマップ（予定）</h2>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3">
-                        <span class="text-xs font-mono font-bold text-gold-600">STEP 01</span>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">キックオフ</h4>
-                            <p class="text-xs text-slate-500 mt-1">コンセプト共有・希望シルエット擦り合わせ</p>
-                        </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
+                    <div class="glass-card p-3 rounded-lg space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-gold-600">STEP 01</span>
+                        <h4 class="font-bold text-dark-900 text-xs">キックオフ</h4>
+                        <p class="text-[10px] text-slate-500">コンセプト共有・希望シルエット擦り合わせ</p>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3">
-                        <span class="text-xs font-mono font-bold text-gold-600">STEP 02</span>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">木型方針決定</h4>
-                            <p class="text-xs text-slate-500 mt-1">既存改修/新規起型決定・仕様選定</p>
-                        </div>
+                    <div class="glass-card p-3 rounded-lg space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-gold-600">STEP 02</span>
+                        <h4 class="font-bold text-dark-900 text-xs">木型方針決定</h4>
+                        <p class="text-[10px] text-slate-500">既存改修 / 新規起型決定・基本仕様選定</p>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3">
-                        <span class="text-xs font-mono font-bold text-gold-600">STEP 03</span>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">1st サンプル試作</h4>
-                            <p class="text-xs text-slate-500 mt-1">サンプル作成・外観/フィッティング評価</p>
-                        </div>
+                    <div class="glass-card p-3 rounded-lg space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-gold-600">STEP 03</span>
+                        <h4 class="font-bold text-dark-900 text-xs">1stサンプル</h4>
+                        <p class="text-[10px] text-slate-500">サンプル作成・外観・フィッティング評価</p>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3">
-                        <span class="text-xs font-mono font-bold text-gold-600">STEP 04</span>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">履き込み・修正</h4>
-                            <p class="text-xs text-slate-500 mt-1">モニターテスト・木型と仕様の微調整</p>
-                        </div>
+                    <div class="glass-card p-3 rounded-lg space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-gold-600">STEP 04</span>
+                        <h4 class="font-bold text-dark-900 text-xs">履き込み修正</h4>
+                        <p class="text-[10px] text-slate-500">モニター履き込みテスト・仕様微調整</p>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3">
-                        <span class="text-xs font-mono font-bold text-gold-600">STEP 05</span>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">最終サンプル・原価</h4>
-                            <p class="text-xs text-slate-500 mt-1">サンプル確定・量産原価および条件合意</p>
-                        </div>
+                    <div class="glass-card p-3 rounded-lg space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-gold-600">STEP 05</span>
+                        <h4 class="font-bold text-dark-900 text-xs">最終サンプル</h4>
+                        <p class="text-[10px] text-slate-500">最終サンプル確定・量産原価合意</p>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex flex-col justify-between space-y-3 border-gold-400 bg-gold-50/60">
-                        <span class="text-xs font-mono font-bold text-gold-700">STEP 06</span>
-                        <div>
-                            <h4 class="font-bold text-gold-700 text-sm">クラファン・量産</h4>
-                            <p class="text-xs text-slate-600 mt-1">受注開始・獲得数量に応じた本生産</p>
-                        </div>
+                    <div class="glass-card p-3 rounded-lg space-y-1 border-gold-400 bg-gold-50/60">
+                        <span class="text-[10px] font-mono font-bold text-gold-700">STEP 06</span>
+                        <h4 class="font-bold text-gold-700 text-xs">クラファン・量産</h4>
+                        <p class="text-[10px] text-slate-600">受注開始・獲得数量に応じた本生産</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 10: First Meeting Agenda -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="10">
-            <div class="slide-content max-w-5xl mx-auto w-full space-y-8">
+        <!-- SLIDE 10: Agenda -->
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="10">
+            <div class="max-w-4xl mx-auto w-full my-auto space-y-5 py-4">
                 <div>
-                    <span class="text-gold-600 font-mono text-sm tracking-widest font-semibold">07 / FIRST MEETING AGENDA</span>
-                    <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-slate-900 mt-1">初回お打ち合わせで協議・確認したいこと</h2>
+                    <span class="text-gold-600 font-mono text-xs md:text-sm tracking-widest font-semibold">07 / FIRST MEETING AGENDA</span>
+                    <h2 class="text-xl md:text-3xl font-serif-jp font-bold text-dark-900 mt-1">初回お打ち合わせで協議・確認したいこと</h2>
                 </div>
 
-                <div class="space-y-3">
-                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-sm flex items-center justify-center border border-gold-300">1</span>
-                            <span class="font-bold text-slate-900 text-sm">木型開発の可否と推奨手法</span>
+                <div class="space-y-2.5">
+                    <div class="glass-card p-3.5 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-xs flex items-center justify-center border border-gold-300">1</span>
+                            <span class="font-bold text-dark-900 text-xs md:text-sm">木型開発の可否と推奨手法</span>
                         </div>
-                        <span class="text-xs text-slate-500 hidden sm:inline">既存木型のアサイン可能リスト、または新規起型の費用感</span>
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">既存木型のアサイン可能リスト、または新規起型の費用感</span>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-sm flex items-center justify-center border border-gold-300">2</span>
-                            <span class="font-bold text-slate-900 text-sm">試作費用と回数の目安</span>
+                    <div class="glass-card p-3.5 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-xs flex items-center justify-center border border-gold-300">2</span>
+                            <span class="font-bold text-dark-900 text-xs md:text-sm">試作費用と回数の目安</span>
                         </div>
-                        <span class="text-xs text-slate-500 hidden sm:inline">サンプル作成コストおよび完成度を担保するための平均試作回数</span>
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">サンプル作成コストおよび完成度を担保するための平均試作回数</span>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-sm flex items-center justify-center border border-gold-300">3</span>
-                            <span class="font-bold text-slate-900 text-sm">50〜100足規模のMOQ</span>
+                    <div class="glass-card p-3.5 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-xs flex items-center justify-center border border-gold-300">3</span>
+                            <span class="font-bold text-dark-900 text-xs md:text-sm">50〜100足規模のMOQ</span>
                         </div>
-                        <span class="text-xs text-slate-500 hidden sm:inline">テストマーケ規模での受注生産に対応可能な条件の確認</span>
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">テストマーケ規模での受注生産に対応可能な条件の確認</span>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-sm flex items-center justify-center border border-gold-300">4</span>
-                            <span class="font-bold text-slate-900 text-sm">推奨アッパー・ソール仕様</span>
+                    <div class="glass-card p-3.5 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-xs flex items-center justify-center border border-gold-300">4</span>
+                            <span class="font-bold text-dark-900 text-xs md:text-sm">推奨アッパー・ソール仕様</span>
                         </div>
-                        <span class="text-xs text-slate-500 hidden sm:inline">上代5.5〜6万円に見合う推奨レザー・底材・製法の具体的な提案</span>
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">上代5.5〜6万円に見合う推奨レザー・底材・製法の具体的な提案</span>
                     </div>
 
-                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-sm flex items-center justify-center border border-gold-300">5</span>
-                            <span class="font-bold text-slate-900 text-sm">標準試作・生産スケジュール</span>
+                    <div class="glass-card p-3.5 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-full bg-gold-100 text-gold-700 font-mono font-bold text-xs flex items-center justify-center border border-gold-300">5</span>
+                            <span class="font-bold text-dark-900 text-xs md:text-sm">標準試作・生産スケジュール</span>
                         </div>
-                        <span class="text-xs text-slate-500 hidden sm:inline">着手からクラファン出品用サンプル完成までの標準リードタイム</span>
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">着手からクラファン出品用サンプル完成までの標準リードタイム</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 11: Partnership -->
-        <section class="slide absolute inset-0 p-6 md:p-12 flex flex-col justify-center hidden" data-slide="11">
-            <div class="slide-content max-w-4xl mx-auto w-full text-center space-y-8">
-                <span class="text-gold-600 font-cinzel text-sm tracking-widest font-bold border-b border-gold-300 pb-2">PARTNERSHIP</span>
+        <!-- SLIDE 11: Partnership Ending -->
+        <section class="slide absolute inset-0 slide-scroll-wrapper p-5 md:p-12 hidden" data-slide="11">
+            <div class="max-w-3xl mx-auto w-full my-auto text-center space-y-6 py-6">
+                <!-- Large Logo Badge for Ending -->
+                <div class="w-20 h-20 md:w-28 md:h-28 text-dark-900 mx-auto">
+                    <img src="logo.png" onerror="this.style.display='none'; document.getElementById('ending-svg-logo').style.display='block';" alt="蒲田製靴 KAMADA Logo" class="w-full h-full object-contain hidden" />
+                    <svg id="ending-svg-logo" viewBox="0 0 200 200" class="w-full h-full fill-current">
+                        <path d="M 20,20 H 180 V 180 H 20 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <path d="M 26,26 H 174 V 174 H 26 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <line x1="100" y1="42" x2="100" y2="138" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="62" y="83" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">蒲</text>
+                        <text x="62" y="128" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">田</text>
+                        <text x="138" y="83" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">製</text>
+                        <text x="138" y="128" font-family="'Noto Serif JP', serif" font-weight="bold" font-size="36" text-anchor="middle">靴</text>
+                        <text x="100" y="165" font-family="'Cinzel', serif" font-weight="600" font-size="20" text-anchor="middle" letter-spacing="5">KAMADA</text>
+                    </svg>
+                </div>
+
+                <span class="text-gold-700 font-cinzel text-xs tracking-widest font-bold border-b border-gold-300 pb-1 inline-block">PARTNERSHIP</span>
                 
-                <h2 class="text-3xl md:text-5xl font-serif-jp font-bold text-slate-900 leading-tight">
+                <h2 class="text-2xl md:text-4xl font-serif-jp font-bold text-dark-900 leading-tight">
                     正統派の美しさに、<br><span class="gold-gradient-text">必要なゆとり</span>を。
                 </h2>
 
-                <p class="text-slate-600 font-serif-jp text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                    ものづくりの確かな技術と知見をお借りし、これまでにない新しい価値を持つ一足の革靴として成立させたいと考えております。<br>
-                    ご検討のほど、よろしくお願い申し上げます。
+                <p class="text-slate-600 font-serif-jp text-xs md:text-sm leading-relaxed max-w-xl mx-auto">
+                    ものづくりの確かな技術と知見をお借りし、これまでにない新しい価値を持つ一足の革靴として成立させたいと考えております。ご検討のほど、よろしくお願い申し上げます。
                 </p>
 
-                <div class="pt-8 border-t border-slate-200 inline-block px-12">
-                    <p class="text-xs text-slate-400 uppercase tracking-widest font-mono">新規プレミアム・ドレスシューズ事業</p>
-                    <p class="text-2xl font-cinzel font-bold text-gold-600 mt-1">蒲田製靴 / KAMADA</p>
+                <div class="pt-6 border-t border-slate-200 inline-block px-8">
+                    <p class="text-[10px] text-slate-400 font-mono uppercase">新規プレミアム・ドレスシューズ事業</p>
+                    <p class="text-xl font-cinzel font-bold text-gold-700 mt-0.5">蒲田製靴 / KAMADA</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Grid Modal (All Slides Overview) -->
-    <div id="grid-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="flex justify-between items-center max-w-7xl mx-auto w-full">
-            <h3 class="text-white font-serif-jp font-bold text-lg"><i class="fa-solid fa-border-all text-gold-400 mr-2"></i>スライド一覧</h3>
-            <button onclick="toggleGridModal()" class="text-slate-300 hover:text-white text-2xl">
+    <!-- Grid Modal (Slide Overview) -->
+    <div id="grid-modal" class="fixed inset-0 bg-dark-900/80 backdrop-blur-md z-50 flex flex-col justify-between p-4 md:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="flex justify-between items-center max-w-6xl mx-auto w-full">
+            <h3 class="text-white font-serif-jp font-bold text-base"><i class="fa-solid fa-border-all text-gold-400 mr-2"></i>スライド一覧</h3>
+            <button onclick="toggleGridModal()" class="text-slate-300 hover:text-white text-xl p-2">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full my-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 overflow-y-auto max-h-[75vh] py-4">
-            <!-- Dynamically populated grid thumbs -->
+        <div class="max-w-6xl mx-auto w-full my-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 overflow-y-auto max-h-[70vh] py-3">
+            <!-- Dynamically populated thumbnails -->
         </div>
 
-        <div class="text-center text-xs text-slate-300 font-mono">クリックで対象のスライドへジャンプします</div>
+        <div class="text-center text-xs text-slate-400 font-mono">タップまたはクリックで移動します</div>
     </div>
 
-    <!-- Navigation Footer -->
-    <footer class="h-20 px-6 md:px-12 flex items-center justify-between border-t border-slate-200 z-30 bg-white/90 backdrop-blur-md">
+    <!-- Navigation Footer Bar -->
+    <footer class="h-16 px-4 md:px-10 flex items-center justify-between border-t border-slate-200 bg-white/95 backdrop-blur-md z-30 shrink-0 relative">
         <!-- Progress Bar -->
         <div class="absolute top-0 left-0 h-1 bg-slate-200 w-full">
             <div id="progress-bar" class="h-full bg-gold-500 transition-all duration-300" style="width: 9.09%;"></div>
         </div>
 
-        <button id="btn-prev" onclick="prevSlide()" class="px-5 py-2.5 rounded-lg border border-slate-300 hover:border-gold-500 text-slate-700 hover:text-gold-600 text-sm font-medium transition-all flex items-center space-x-2 disabled:opacity-30 disabled:pointer-events-none shadow-sm">
+        <button id="btn-prev" onclick="prevSlide()" class="px-4 py-2 rounded-lg border border-slate-300 hover:border-gold-500 text-slate-700 hover:text-gold-700 text-xs md:text-sm font-medium transition-all flex items-center space-x-1.5 disabled:opacity-30 disabled:pointer-events-none shadow-sm">
             <i class="fa-solid fa-chevron-left text-xs"></i>
             <span>前へ</span>
         </button>
 
-        <!-- Slide Dots -->
-        <div id="dots-container" class="hidden md:flex items-center space-x-2">
-            <!-- JavaScript will populate active dot markers -->
+        <!-- Slide Indicator Dots -->
+        <div id="dots-container" class="hidden sm:flex items-center space-x-1.5">
+            <!-- Dots added via JS -->
         </div>
 
-        <button id="btn-next" onclick="nextSlide()" class="px-5 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-white font-semibold text-sm transition-all flex items-center space-x-2 shadow-sm">
+        <button id="btn-next" onclick="nextSlide()" class="px-4 py-2 rounded-lg bg-gold-600 hover:bg-gold-700 text-white font-semibold text-xs md:text-sm transition-all flex items-center space-x-1.5 shadow-sm">
             <span>次へ</span>
             <i class="fa-solid fa-chevron-right text-xs"></i>
         </button>
     </footer>
 
+    <!-- Presentation Control Logic with Mobile Swipe Events -->
     <script>
         let currentSlide = 1;
         const totalSlides = 11;
@@ -677,7 +692,12 @@
             "06 OEMご相談", "07 ロードマップ", "07 初回議題", "PARTNERSHIP"
         ];
 
-        // Initialize presentation controls
+        // Touch event handling for mobile swipe left/right
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
         document.addEventListener('DOMContentLoaded', () => {
             setupDots();
             setupGridModal();
@@ -696,14 +716,41 @@
                     }
                 }
             });
+
+            // Mobile Touch Events for Swipe Gesture
+            const slideContainer = document.getElementById('slide-container');
+            slideContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+
+            slideContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
         });
+
+        function handleSwipe() {
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+
+            // Ensure horizontal swipe exceeds vertical scroll and meets minimum threshold (50px)
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX < 0) {
+                    nextSlide(); // Swipe left -> Next
+                } else {
+                    prevSlide(); // Swipe right -> Previous
+                }
+            }
+        }
 
         function setupDots() {
             const container = document.getElementById('dots-container');
             container.innerHTML = '';
             for (let i = 1; i <= totalSlides; i++) {
                 const dot = document.createElement('button');
-                dot.className = `h-2.5 rounded-full transition-all ${i === currentSlide ? 'bg-gold-500 w-6' : 'bg-slate-300 hover:bg-slate-400 w-2.5'}`;
+                dot.className = `h-2 rounded-full transition-all ${i === currentSlide ? 'bg-gold-600 w-5' : 'bg-slate-300 w-2'}`;
                 dot.onclick = () => goToSlide(i);
                 container.appendChild(dot);
             }
@@ -714,14 +761,14 @@
             gridContainer.innerHTML = '';
             for (let i = 1; i <= totalSlides; i++) {
                 const thumb = document.createElement('div');
-                thumb.className = `bg-white p-3 rounded-lg border text-left cursor-pointer transition-all hover:border-gold-500 ${i === currentSlide ? 'border-2 border-gold-500 shadow-md' : 'border-slate-200'}`;
+                thumb.className = `bg-white p-2.5 rounded-lg border text-left cursor-pointer transition-all ${i === currentSlide ? 'border-2 border-gold-500 shadow-md' : 'border-slate-200'}`;
                 thumb.onclick = () => {
                     goToSlide(i);
                     toggleGridModal();
                 };
                 thumb.innerHTML = `
-                    <div class="text-[10px] font-mono font-bold text-gold-600">SLIDE ${String(i).padStart(2, '0')}</div>
-                    <div class="text-xs font-bold text-slate-800 truncate mt-1">${slideTitles[i-1]}</div>
+                    <div class="text-[9px] font-mono font-bold text-gold-600">SLIDE ${String(i).padStart(2, '0')}</div>
+                    <div class="text-xs font-bold text-dark-900 truncate mt-0.5">${slideTitles[i-1]}</div>
                 `;
                 gridContainer.appendChild(thumb);
             }
@@ -743,6 +790,8 @@
                 const slideNum = parseInt(slide.getAttribute('data-slide'));
                 if (slideNum === currentSlide) {
                     slide.classList.remove('hidden');
+                    // Reset scroll position to top when changing slides
+                    slide.scrollTop = 0;
                     setTimeout(() => slide.classList.add('slide-active'), 10);
                 } else {
                     slide.classList.remove('slide-active');
@@ -750,11 +799,9 @@
                 }
             });
 
-            // Update Header & Footer
             document.getElementById('slide-indicator').textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
             document.getElementById('progress-bar').style.width = `${(currentSlide / totalSlides) * 100}%`;
 
-            // Button States
             document.getElementById('btn-prev').disabled = currentSlide === 1;
             
             const nextBtn = document.getElementById('btn-next');
