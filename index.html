@@ -46,13 +46,109 @@
       word-break: break-word;
     }
 
-    .app-container {
+    /* パスワード保護画面 */
+    #lock-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: #1A1A1A;
+      color: #FFFFFF;
+      z-index: 9999;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .lock-card {
+      background: #252525;
+      padding: 40px 32px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .lock-logo {
+      height: 60px;
+      width: auto;
+      margin-bottom: 20px;
+    }
+
+    .lock-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      color: var(--brand-accent-soft);
+    }
+
+    .lock-sub {
+      font-size: 0.85rem;
+      color: #A0AAB2;
+      margin-bottom: 24px;
+    }
+
+    .pin-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+      text-align: center;
+      background: #111111;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .pin-input:focus {
+      border-color: var(--brand-accent-soft);
+    }
+
+    .btn-unlock {
+      width: 100%;
+      padding: 12px;
+      background: var(--brand-accent-soft);
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-unlock:hover {
+      opacity: 0.9;
+    }
+
+    .error-msg {
+      color: #FF6B6B;
+      font-size: 0.8rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* アプリ本体（暗証番号認証前は非表示） */
+    .app-container {
+      display: none;
       flex-direction: column;
       width: 100vw;
       height: 100vh;
       height: 100dvh;
       position: relative;
+    }
+
+    .app-container.unlocked {
+      display: flex;
     }
 
     header {
@@ -469,7 +565,20 @@
 </head>
 <body>
 
-<div class="app-container">
+<!-- パスワード保護用画面 -->
+<div id="lock-screen">
+  <div class="lock-card">
+    <img src="logo.png" alt="KAMADA Logo" class="lock-logo" onerror="this.style.display='none'">
+    <div class="lock-title">KAMADA PROPOSAL</div>
+    <div class="lock-sub">閲覧するには4桁の暗証番号を入力してください</div>
+    <input type="password" id="pin-input" class="pin-input" maxlength="4" placeholder="••••" autofocus>
+    <button id="btn-unlock" class="btn-unlock">認証する</button>
+    <div id="error-msg" class="error-msg">暗証番号が正しくありません</div>
+  </div>
+</div>
+
+<!-- 企画書コンテンツ本体 -->
+<div class="app-container" id="app-container">
   
   <header>
     <a href="#" class="header-logo">
@@ -804,6 +913,37 @@
 </div>
 
 <script>
+  // --------------------------------------------------
+  // パスワード認証機能
+  // --------------------------------------------------
+  const CORRECT_PIN = "1234"; // ★好きな4桁の暗証番号に変更してください★
+
+  const lockScreen = document.getElementById('lock-screen');
+  const appContainer = document.getElementById('app-container');
+  const pinInput = document.getElementById('pin-input');
+  const btnUnlock = document.getElementById('btn-unlock');
+  const errorMsg = document.getElementById('error-msg');
+
+  function checkPin() {
+    if (pinInput.value === CORRECT_PIN) {
+      lockScreen.style.display = 'none';
+      appContainer.classList.add('unlocked');
+      updateSlide(0);
+    } else {
+      errorMsg.style.display = 'block';
+      pinInput.value = '';
+      pinInput.focus();
+    }
+  }
+
+  btnUnlock.addEventListener('click', checkPin);
+  pinInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') checkPin();
+  });
+
+  // --------------------------------------------------
+  // スライド制御機能
+  // --------------------------------------------------
   const totalSlides = 12;
   let currentIndex = 0;
 
@@ -846,8 +986,10 @@
   btnNext.addEventListener('click', () => updateSlide(currentIndex + 1));
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') updateSlide(currentIndex - 1);
-    if (e.key === 'ArrowRight') updateSlide(currentIndex + 1);
+    if (lockScreen.style.display === 'none') {
+      if (e.key === 'ArrowLeft') updateSlide(currentIndex - 1);
+      if (e.key === 'ArrowRight') updateSlide(currentIndex + 1);
+    }
   });
 
   // Touch Swipe Handling
@@ -860,7 +1002,9 @@
 
   document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+    if (lockScreen.style.display === 'none') {
+      handleSwipe();
+    }
   }, { passive: true });
 
   function handleSwipe() {
@@ -901,9 +1045,6 @@
   modalGrid.addEventListener('click', (e) => {
     if (e.target === modalGrid) modalGrid.classList.remove('active');
   });
-
-  // Init
-  updateSlide(0);
 </script>
 
 </body>
