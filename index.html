@@ -137,7 +137,7 @@
       display: none;
     }
 
-    /* アプリ本体（暗証番号認証前は非表示） */
+    /* アプリ本体 */
     .app-container {
       display: none;
       flex-direction: column;
@@ -232,10 +232,10 @@
       flex-direction: column;
     }
 
-    /* ★携帯でのスクロールを常に有効化する修正★ */
+    /* 携帯スクロール受け付け設定 */
     .slide-scroll-wrapper {
       flex: 1;
-      overflow-y: scroll; /* 常にスクロールを受け付ける */
+      overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
       padding: 40px 24px;
       display: flex;
@@ -247,7 +247,7 @@
     .slide-inner {
       width: 100%;
       max-width: 960px;
-      margin: auto 0; /* 高さが短いときも中央に寄せつつ上下余白を確保 */
+      margin: auto 0;
       background: var(--bg-card);
       padding: 48px;
       border-radius: 12px;
@@ -601,34 +601,40 @@
   <main class="main-stage">
     <div class="slides-wrapper" id="slides-wrapper">
       
-      <!-- Slide 1 -->
+      <!-- Slide 1 (修正：元の改行・表記を完全再現) -->
       <div class="slide-item">
         <div class="slide-scroll-wrapper">
           <div class="slide-inner hero-slide">
             <div class="hero-logo-box">
               <img src="logo.png" alt="蒲田製靴 KAMADA Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'><rect x=\'10\' y=\'10\' width=\'100\' height=\'100\' fill=\'none\' stroke=\'%231A1A1A\' stroke-width=\'2\'/><rect x=\'14\' y=\'14\' width=\'92\' height=\'92\' fill=\'none\' stroke=\'%231A1A1A\' stroke-width=\'1\'/><line x1=\'60\' y1=\'25\' x2=\'60\' y2=\'75\' stroke=\'%231A1A1A\' stroke-width=\'1.5\'/><text x=\'35\' y=\'45\' font-family=\'serif\' font-size=\'16\' fill=\'%231A1A1A\'>蒲</text><text x=\'35\' y=\'68\' font-family=\'serif\' font-size=\'16\' fill=\'%231A1A1A\'>田</text><text x=\'68\' y=\'45\' font-family=\'serif\' font-size=\'16\' fill=\'%231A1A1A\'>製</text><text x=\'68\' y=\'68\' font-family=\'serif\' font-size=\'16\' fill=\'%231A1A1A\'>靴</text><text x=\'60\' y=\'96\' font-family=\'Cinzel,serif\' font-size=\'10\' letter-spacing=\'3\' text-anchor=\'middle\' fill=\'%231A1A1A\'>KAMADA</text></svg>'">
             </div>
-            <div class="slide-tag">2026 EDITION / OEM PARTNER PROPOSAL</div>
             <h1 class="hero-catch">正統派の美しさに、<br>必要なゆとりを。</h1>
             <p class="hero-sub">端正なドレスシューズの外観を保ちながら、足指まわりの窮屈さを解消する。<br>木型からの共同開発による新しい革靴の提案。</p>
             <div class="hero-meta">
-              <span>CONFIDENTIAL</span>
-              <span>蒲田製靴 / KAMADA 新規プレミアム・ドレスシューズ事業</span>
+              <span>2026 EDITION</span>
+              <span>OEM PARTNER PROPOSAL</span>
+              <span>OEMパートナー様向け 共同開発相談資料</span>
+              <span style="color:var(--brand-accent); font-weight:700; margin-top:4px;">CONFIDENTIAL</span>
+              <span style="margin-top:8px; font-weight:700; color:var(--brand-primary);">蒲田製靴 / KAMADA</span>
+              <span>新規プレミアム・ドレスシューズ事業</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Slide 2 -->
+      <!-- Slide 2 (修正：原文のテキスト構造を完全再現) -->
       <div class="slide-item">
         <div class="slide-scroll-wrapper">
           <div class="slide-inner">
             <div class="slide-tag">01 / PROJECT OVERVIEW</div>
             <h2 class="slide-title">企画概要と事業モデル</h2>
             <div class="grid-2">
-              <div class="card">
+              <div class="card" style="grid-column: 1 / -1;">
                 <div class="card-title">開発の狙い</div>
-                <div class="card-text">コンフォートの高級化ではなく、<strong>正統派ドレスの内部革新</strong>。<br>見た目は格好いい正統派ドレスシューズ。しかし内部は足指を締めつけない設計。この両立を木型から作り込みます。</div>
+                <div class="card-text">
+                  <strong style="font-size:1.05rem; color:var(--brand-primary);">コンフォートの高級化ではなく、正統派ドレスの内部革新</strong><br>
+                  見た目は格好いい正統派ドレスシューズ。しかし内部は足指を締めつけない設計。この両立を木型から作り込みます。
+                </div>
               </div>
               <div class="card">
                 <div class="card-title">ターゲット層</div>
@@ -639,11 +645,12 @@
                 <div class="highlight-val">¥55,000 〜 60,000 <span style="font-size:0.9rem; color:var(--text-muted);">(税込)</span></div>
               </div>
               <div class="card">
-                <div class="card-title">生産・販売モデル</div>
-                <div class="card-text">
-                  <strong>初回生産ロット:</strong> 50 〜 100 足 (テストマーケ)<br>
-                  <strong>販売方式:</strong> D2C × クラウドファンディング
-                </div>
+                <div class="card-title">初回生産ロット</div>
+                <div class="card-text">50 〜 100 足 (テストマーケ)</div>
+              </div>
+              <div class="card">
+                <div class="card-title">販売方式</div>
+                <div class="card-text">D2C × クラウドファンディング</div>
               </div>
             </div>
           </div>
@@ -658,11 +665,11 @@
             <h2 class="slide-title">開発背景：既存製品と顧客ニーズの乖離</h2>
             <div class="grid-3" style="margin-bottom:24px;">
               <div class="card">
-                <div class="card-title">夕方の不快感・締めつけ</div>
+                <div class="card-title">夕方の不快感・締めつけの経験</div>
                 <div class="card-text">長時間の着用により、足指や前足部に強い圧迫感と痛みが発生。</div>
               </div>
               <div class="card">
-                <div class="card-title">幅広靴（4E/5E）への不満</div>
+                <div class="card-title">幅広靴（4E/5E）に対する見た目の不満</div>
                 <div class="card-text">楽ではあるが、甲が高く爪先が丸い。スーツに合わせる端正さに欠ける。</div>
               </div>
               <div class="card" style="border-color:var(--brand-accent);">
@@ -710,20 +717,24 @@
         </div>
       </div>
 
-      <!-- Slide 5 -->
+      <!-- Slide 5 (修正：原文の「前/後」「部位分離」を完全再現) -->
       <div class="slide-item">
         <div class="slide-scroll-wrapper">
           <div class="slide-inner">
             <div class="slide-tag">03 / PRODUCT CONCEPT</div>
             <h2 class="slide-title">コアコンセプト：設計思想</h2>
-            <p style="font-size:1.2rem; font-weight:600; margin-bottom:24px;">「ゆとり」と「ホールド」を部位ごとに分離して設計する。</p>
+            <div style="text-align:center; padding:16px; background:var(--bg-accent-light); border-radius:8px; margin-bottom:24px; font-weight:700; font-size:1.1rem;">
+              「ゆとり」と「ホールド」を部位ごとに分離して設計する。
+            </div>
             <div class="grid-2">
               <div class="card" style="border-top:4px solid var(--brand-accent);">
-                <div class="card-title">【前足部】必要なゆとり</div>
+                <div style="font-size:1.2rem; font-weight:700; color:var(--brand-accent); margin-bottom:8px;">前</div>
+                <div class="card-title">前足部：必要なゆとり</div>
                 <div class="card-text">親指・小指が広がる空間を十分に確保し、圧迫や曲がりを防止。</div>
               </div>
               <div class="card" style="border-top:4px solid var(--brand-primary);">
-                <div class="card-title">【甲・踵】端正なホールド</div>
+                <div style="font-size:1.2rem; font-weight:700; color:var(--brand-primary); margin-bottom:8px;">後</div>
+                <div class="card-title">甲・踵：端正なホールド</div>
                 <div class="card-text">甲周りは低く抑え、踵をしっかり固めることで前滑りを完全に防ぐ。</div>
               </div>
             </div>
@@ -871,7 +882,7 @@
         </div>
       </div>
 
-      <!-- Slide 12 -->
+      <!-- Slide 12 (修正：PARTNERSHIP原文の文章を完全再現) -->
       <div class="slide-item">
         <div class="slide-scroll-wrapper">
           <div class="slide-inner hero-slide">
@@ -880,8 +891,8 @@
             </div>
             <div class="slide-tag">PARTNERSHIP</div>
             <h2 class="hero-catch">正統派の美しさに、<br>必要なゆとりを。</h2>
-            <p class="hero-sub">ものづくりの確かな技術と知見をお借りし、これまでにない新しい価値を持つ一足の革靴として成立させたいと考えております。<br>ご検討のほど、よろしくお願い申し上げます。</p>
-            <div style="margin-top:20px; font-weight:700; letter-spacing:0.1em; color:var(--brand-primary);">
+            <p class="hero-sub" style="max-width:720px;">ものづくりの確かな技術と知見をお借りし、これまでにない新しい価値を持つ一足の革靴として成立させたいと考えております。ご検討のほど、よろしくお願い申し上げます。</p>
+            <div style="margin-top:24px; font-weight:700; letter-spacing:0.1em; color:var(--brand-primary); line-height:1.6;">
               蒲田製靴 / KAMADA<br>
               <span style="font-size:0.85rem; color:var(--text-muted); font-weight:normal;">新規プレミアム・ドレスシューズ事業</span>
             </div>
@@ -914,10 +925,8 @@
 </div>
 
 <script>
-  // --------------------------------------------------
   // パスワード認証機能
-  // --------------------------------------------------
-  const CORRECT_PIN = "1234"; // ★好きな4桁の暗証番号に変更してください★
+  const CORRECT_PIN = "1234"; 
 
   const lockScreen = document.getElementById('lock-screen');
   const appContainer = document.getElementById('app-container');
@@ -942,9 +951,7 @@
     if (e.key === 'Enter') checkPin();
   });
 
-  // --------------------------------------------------
   // スライド制御機能
-  // --------------------------------------------------
   const totalSlides = 12;
   let currentIndex = 0;
 
@@ -993,7 +1000,7 @@
     }
   });
 
-  // Touch Swipe Handling
+  // Touch Swipe
   let touchStartX = 0;
   let touchEndX = 0;
 
